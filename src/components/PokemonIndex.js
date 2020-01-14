@@ -4,30 +4,46 @@ import PokemonForm from "./PokemonForm";
 import Search from "./Search";
 import { Container } from "semantic-ui-react";
 
-const API = "http://localhost:3000/pokemon";
+const POKEMON_API = "http://localhost:3000/pokemon";
 
 class PokemonPage extends React.Component {
   state = {
-    pokemons: []
+    pokemons: [],
+    searchText: ""
   };
 
   componentDidMount() {
-    fetch(API)
+    fetch(POKEMON_API)
       .then(res => res.json())
       .then(pokemons => this.setState({ pokemons: pokemons }));
   }
 
+  createAPokemon = pokemon => {
+    this.setState({
+      pokemons: [...this.state.pokemons, pokemon]
+    });
+  };
+
+  handleChange = event => {
+    this.setState({ searchText: event.target.value });
+  };
+
+  filterPokemon = (pokemons, searchString) => {
+    return pokemons.filter(p => p.name.includes(searchString));
+  };
+
   render() {
-    const { pokemons } = this.state;
+    const { pokemons, searchText } = this.state;
+    const filteredPokemons = this.filterPokemon(pokemons, searchText);
     return (
       <Container>
         <h1>Pokemon Searcher</h1>
         <br />
-        <PokemonForm />
+        <PokemonForm createAPokemon={this.createANewPokemon} />
         <br />
-        <Search onChange={() => console.log("🤔")} />
+        <Search onChange={this.handleChange} searchText={searchText} />
         <br />
-        <PokemonCollection pokemonsToRender={pokemons} />
+        <PokemonCollection pokemonsToRender={filteredPokemons} />
       </Container>
     );
   }
