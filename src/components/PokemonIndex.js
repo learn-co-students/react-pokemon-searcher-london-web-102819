@@ -28,13 +28,13 @@ class PokemonPage extends React.Component {
     this.setState({ searchText: event.target.value });
   };
 
-  filterPokemon = (pokemons, searchString) => {
+  filterPokemonBySearch = (pokemons, searchString) => {
     return pokemons.filter(p => p.name.includes(searchString));
   };
 
   render() {
     const { pokemons, searchText } = this.state;
-    const filteredPokemons = this.filterPokemon(pokemons, searchText);
+    const filteredPokemons = this.filterPokemonBySearch(pokemons, searchText);
     return (
       <Container>
         <h1>Pokemon Searcher</h1>
