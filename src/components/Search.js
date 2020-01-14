@@ -1,10 +1,10 @@
 import React from "react";
 
-const Search = ({ onChange, searchText }) => {
+const Search = ({ onChange, searchString }) => {
   return (
     <div className="ui search">
       <div className="ui icon input">
-        <input className="prompt" onChange={onChange} type="text" />
+        <input className="prompt" onChange={onChange} value={searchString} />
         <i className="search icon" />
       </div>
     </div>

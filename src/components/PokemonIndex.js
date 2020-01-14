@@ -41,7 +41,7 @@ class PokemonPage extends React.Component {
         <br />
         <PokemonForm createAPokemon={this.createANewPokemon} />
         <br />
-        <Search onChange={this.handleChange} searchText={searchText} />
+        <Search onChange={this.handleChange} searchString={searchText} />
         <br />
         <PokemonCollection pokemonsToRender={filteredPokemons} />
       </Container>
