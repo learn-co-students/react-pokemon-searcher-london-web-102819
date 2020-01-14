@@ -7345,6 +7345,25 @@
         }
       ],
       "id": 208
+    },
+    {
+      "name": "James",
+      "sprites": {
+        "front": "gogo",
+        "back": "gogo"
+      },
+      "stats": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        {
+          "value": "23",
+          "name": "hp"
+        }
+      ],
+      "id": 209
     }
   ]
 }

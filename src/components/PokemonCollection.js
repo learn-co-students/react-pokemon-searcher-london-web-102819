@@ -4,18 +4,12 @@ import { Card } from 'semantic-ui-react'
 
 
 
-class PokemonCollection extends React.Component {
-
-
-
-    render() {
-        
+function PokemonCollection(props) {
         return (
             <Card.Group itemsPerRow={6}>
-                {this.props.pokemon.map(p => <PokemonCard pokemon = {p} key = {p.id} />)}
+                {props.pokemon.map(p => <PokemonCard pokemon = {p} key = {p.id} />)}
             </Card.Group>
         )
-    }
 }
 
 export default PokemonCollection

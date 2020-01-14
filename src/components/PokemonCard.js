@@ -1,42 +1,33 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Card } from 'semantic-ui-react'
 
-class PokemonCard extends React.Component {
+function PokemonCard(props) {
 
-    state = {
-        isClicked: false 
-    }
+    const [isClicked, setIsClicked] = useState(false);
 
-    handleClick = () => {
-        this.setState({
-            isClicked: !this.state.isClicked
-        });
-    }
-    render() {
+    const {name} = props.pokemon,
+        hp  = props.pokemon.stats[5].value,
+        {front, back} = props.pokemon.sprites;
 
-        const {name} = this.props.pokemon,
-            hp  = this.props.pokemon.stats[5].value,
-        {front, back} = this.props.pokemon.sprites;
-
-        return (
-            <Card>
-                <div onClick = {this.handleClick}>
-                    <div className="image">
-                        <img alt="oh no!" src = {this.state.isClicked? back : front}/>
-                    </div>
-                    <div className="content">
-                        <div className="header">{name}</div>
-                    </div>
-                    <div className="extra content">
-                        <span>
-                            <i className="icon heartbeat red" />
-                            {hp} hp
-                        </span>
-                    </div>
+    return (
+        <Card>
+            <div onClick = {() => setIsClicked(!isClicked)}>
+                <div className="image">
+                    <img alt="oh no!" src = {isClicked? back : front}/>
                 </div>
-            </Card>
-        )
-    }
+                <div className="content">
+                    <div className="header">{name}</div>
+                </div>
+                <div className="extra content">
+                    <span>
+                        <i className="icon heartbeat red" />
+                        {hp} hp
+                    </span>
+                </div>
+            </div>
+        </Card>
+    )
 }
+
 
 export default PokemonCard
